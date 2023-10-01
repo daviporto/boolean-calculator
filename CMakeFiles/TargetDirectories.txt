@@ -1,3 +1,0 @@
-/home/daviaraujo/Documents/ed/tp1/CMakeFiles/prog.dir
-/home/daviaraujo/Documents/ed/tp1/CMakeFiles/edit_cache.dir
-/home/daviaraujo/Documents/ed/tp1/CMakeFiles/rebuild_cache.dir
