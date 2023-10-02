@@ -13,7 +13,7 @@ typedef uint8_t byte;
 class Evaluate {
     const char *operation, *values;
 public:
-    Evaluate(char *operation, char *values);
+    Evaluate(const char *operation, const char *values);
 
     byte execute_operation(byte a, byte b, char op);
 

@@ -6,7 +6,7 @@
 #include "../include/stack.h"
 #include <iostream>
 
-Evaluate::Evaluate(char *operation, char *values) {
+Evaluate::Evaluate(const char *operation, const  char *values) {
     this->operation = operation;
     this->values = values;
 }
@@ -15,25 +15,25 @@ Evaluate::Evaluate(char *operation, char *values) {
 
 int Evaluate::priority(char op) {
     if (op == '&')
-        return 1;
-    if (op == '|')
         return 2;
+    if (op == '|')
+        return 1;
     if (op == '~')
         return 3;
 
-    return  0;
+    return 0;
 }
 
 byte Evaluate::execute_operation(byte a, byte b, char _operator) {
-6                                          switch (_operator) {
+    switch (_operator) {
         case '&':
             return a & b;
         case '|':
             return a | b;
         case '~':
-           return a == '0' ? '1' : '0';
+            return a == '0' ? '1' : '0';
         default:
-            return  -1;
+            return -1;
     }
 }
 
