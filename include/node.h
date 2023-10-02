@@ -19,6 +19,8 @@ public:
     void set_expression_result(byte expression_result);
     char get_quantifier();
     std::string get_values() const;
+    void set_values(std::string values);
+    void set_value(char value, unsigned int index);
 };
 
 

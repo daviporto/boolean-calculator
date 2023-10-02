@@ -1,7 +1,3 @@
-//
-// Created by daviaraujo on 24/09/23.
-//
-
 #include "../include/satisfiability.h"
 #include <iostream>
 
@@ -15,13 +11,13 @@ Satisfiability::~Satisfiability() {
     delete this->tree;
 }
 
-std::string Satisfiability::evaluate() {
+void Satisfiability::evaluate() {
     if (this->tree->is_build()) {
         this->tree->evaluate(this->tree->get_root(), 0);
-        std::cout << "Expression: " << this->tree->get_root()->get_expression_result() << std::endl;
-        return this->tree->get_root()->get_values();
+        this->tree->get_root()->get_expression_result() == '1'
+        ? std::cout << "1 " << this->tree->get_root()->get_values() << std::endl
+        : std::cout << "0 " << std::endl;
     }
-    return " ";
 }
 
 

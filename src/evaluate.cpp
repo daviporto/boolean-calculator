@@ -1,7 +1,3 @@
-//
-// Created by daviaraujo on 21/09/23.
-//
-
 #include "../include/evaluate.h"
 #include "../include/stack.h"
 #include <iostream>

@@ -16,7 +16,7 @@ public:
 
     ~Satisfiability();
 
-    std::string evaluate();
+    void evaluate();
 };
 
 

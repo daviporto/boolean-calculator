@@ -10,12 +10,12 @@ int main(int argc, char *argv[]) {
         throw std::runtime_error("argc must be 3");
     }
 
-    if (strcmp(argv[1], "-a") == 0) {
+    if (argv[1][1] == 'a') {
         auto e = Evaluate(argv[2], argv[3]);
         std::cout << e.evaluate();
-    } else if (strcmp(argv[1], "−s") == 0) {
+    } else if (argv[1][1] == 's') {
         auto s = Satisfiability(argv[2], argv[3]);
-        std::cout << "done " << s.evaluate() << std::endl;
+        s.evaluate();
     } else {
         throw std::runtime_error("Invalid argument");
     }

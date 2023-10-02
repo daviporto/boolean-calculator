@@ -21,3 +21,9 @@ char Node::get_quantifier() {
 }
 
 std::string Node::get_values() const { return this->values; }
+
+void Node::set_values(std::string values) { this->values = values; }
+
+void Node::set_value(char value, unsigned int index) {
+    this->values[index] = value;
+}
