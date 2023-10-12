@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="asdasd" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="−s  &quot;0 | 1&quot; e1 " REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="tp1" TARGET_NAME="sfdfdsf" CONFIG_NAME="sfdfdsf" version="1" RUN_PATH="$PROJECT_DIR$/bin/main">
+  <configuration default="false" name="asdasd" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="−a &quot;0 | 1 | 2 | 3 | 4 | 5 | 6 | 7  | 8 | 9 | 10&quot; 100000000001 " REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="tp1" TARGET_NAME="sfdfdsf" CONFIG_NAME="sfdfdsf" version="1" RUN_PATH="$PROJECT_DIR$/bin/main">
     <method v="2">
       <option name="CLION.COMPOUND.BUILD" enabled="true" />
     </method>

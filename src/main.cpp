@@ -17,7 +17,9 @@ int main(int argc, char *argv[]) {
         auto s = Satisfiability(argv[2], argv[3]);
         s.evaluate();
     } else {
-        throw std::runtime_error("Invalid argument");
+        auto e = Evaluate(argv[2], argv[3]);
+        std::cout << e.evaluate();
+//        throw std::runtime_error("Invalid argument");
     }
 }
 

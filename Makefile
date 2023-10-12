@@ -3,11 +3,11 @@ SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/main.o $(OBJ)/evaluate.o $(OBJ)/node.o $(OBJ)/binaryTree.o $(OBJ)/satisfiability.o
+OBJS = $(OBJ)/main.o $(OBJ)/evaluate.o $(OBJ)/binaryTree.o $(OBJ)/satisfiability.o
 HDRS = $(INC)/stack.h $(INC)/evaluate.h $(INC)/node.h $(INC)/binaryTree.h $(INC)/satisfiability.h
-CFLAGS = -Wall -g -c -I$(INC)
+CFLAGS = -Wall -g -c -I$(INC) -std=c++11
 
-EXE = $(BIN)/main
+EXE = $(BIN)/tp1.out
 
 .PHONY: all clean
 
@@ -16,17 +16,14 @@ run: all
 
 all: $(EXE)
 
-$(BIN)/main: $(OBJS)
-	$(CC) -g -o $(BIN)/main $(OBJS)
+$(BIN)/tp1.out: $(OBJS)
+	$(CC) -std=c++11 -g -o $(BIN)/tp1.out $(OBJS)
 
 $(OBJ)/main.o: $(HDRS) $(SRC)/main.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp
 
 $(OBJ)/evaluate.o: $(HDRS) $(SRC)/evaluate.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/evaluate.o $(SRC)/evaluate.cpp
-
-$(OBJ)/node.o: $(HDRS) $(SRC)/node.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/node.o $(SRC)/node.cpp
 
 $(OBJ)/binaryTree.o: $(HDRS) $(SRC)/binaryTree.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/binaryTree.o $(SRC)/binaryTree.cpp

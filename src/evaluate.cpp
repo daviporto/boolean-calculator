@@ -2,7 +2,12 @@
 #include "../include/stack.h"
 #include <iostream>
 
-Evaluate::Evaluate(const char *operation, const  char *values) {
+#define PERFORM_RIGHT_OPERATION \
+    operators.get_top_item() == ('~') \
+    ? operands.push(this->execute_operation(operands.pop(), -1, operators.pop())) \
+  : operands.push(this->execute_operation(operands.pop(), operands.pop(), operators.pop()))
+
+Evaluate::Evaluate(const char *operation, const char *values) {
     this->operation = operation;
     this->values = values;
 }
@@ -37,36 +42,40 @@ byte Evaluate::evaluate() {
     auto operands = Stack<byte>(100);
     auto operators = Stack<char>(100);
 
-    for (auto c: (std::string)this->operation) {
-        if (c == ' ') {
-            continue;
-        } else if (c == '(') {
-            operators.push(c);
-        } else if (isdigit(c)) {
-            operands.push((this->values)[c - '0']);
-        } else if (c == ')') {
-            while (!operators.is_empty() && operators.get_top_item() != '(') {
-                operators.get_top_item() == ('~')
-                ? operands.push(this->execute_operation(operands.pop(), -1, operators.pop()))
-                : operands.push(this->execute_operation(operands.pop(), operands.pop(), operators.pop()));
-            }
-
-            if (!operators.is_empty()) operators.pop();
-        } else {
-            while (!operators.is_empty() && this->priority(operators.get_top_item()) >= this->priority(c)) {
-                operators.get_top_item() == ('~')
-                ? operands.push(this->execute_operation(operands.pop(), -1, operators.pop()))
-                : operands.push(this->execute_operation(operands.pop(), operands.pop(), operators.pop()));
-            }
-            operators.push(c);
+    std::string operation_str = operation; // convert to std::string
+    std::string::size_type i = 0;
+    while (i < operation_str.length()) {
+        char c = operation_str[i];
+        switch (c) {
+            case ' ':
+                break;
+            case '(':
+                operators.push(c);
+                break;
+            case ')':
+                while (!operators.is_empty() && operators.get_top_item() != '(') PERFORM_RIGHT_OPERATION;
+                if (!operators.is_empty()) operators.pop();
+                break;
+            default:
+                if (isdigit(c)) {
+                    std::string::size_type j = i;
+                    while (j < operation_str.length() && isdigit(operation_str[j])) {
+                        j++;
+                    }
+                    std::string number_str = operation_str.substr(i, j - i);
+                    operands.push((this->values)[std::stoi(number_str)]);
+                    i = j;
+                    continue;  // Skip the increment at the end of the loop
+                } else {
+                    while (!operators.is_empty() && !operands.is_empty() && this->priority(operators.get_top_item()) > this->priority(c)) PERFORM_RIGHT_OPERATION;
+                    operators.push(c);
+                }
+                break;
         }
+        i++;
     }
 
-    while (!operators.is_empty()) {
-        operators.get_top_item() == ('~')
-        ? operands.push(this->execute_operation(operands.pop(), -1, operators.pop()))
-        : operands.push(this->execute_operation(operands.pop(), operands.pop(), operators.pop()));
-    }
+    while (!operators.is_empty()) PERFORM_RIGHT_OPERATION;
 
     return operands.pop();
 }
