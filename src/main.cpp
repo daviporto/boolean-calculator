@@ -3,6 +3,7 @@
 #include "../include/satisfiability.h"
 #include <iostream>
 #include "string.h"
+#include <stdexcept>
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {
@@ -17,9 +18,7 @@ int main(int argc, char *argv[]) {
         auto s = Satisfiability(argv[2], argv[3]);
         s.evaluate();
     } else {
-        auto e = Evaluate(argv[2], argv[3]);
-        std::cout << e.evaluate();
-//        throw std::runtime_error("Invalid argument");
+        throw std::runtime_error("Invalid argument");
     }
 }
 
